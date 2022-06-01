@@ -9,37 +9,37 @@ import org.springframework.stereotype.Component;
 @Component // will not work without @Component
 public class StudentCRUDAspect {
 
-    @Before("execution(* com.example.aopoverview.controllers.MainController.testing(..))")     //point-cut expression
-    public void logBefore(JoinPoint joinPoint)
+    @Before("execution(* com.example.aopoverview.controllers.MainController.getStudentDetail(..)) and args(studentId)")     //point-cut expression
+    public void logBefore(JoinPoint joinPoint, Integer studentId)
     {
-        System.out.println("before MainController.testing() : " + joinPoint.getSignature().getName());
+        System.out.println("Aspect class: before MainController.getStudentDetail() : " + joinPoint.getSignature().getName());
+    }
+    @After("execution(* com.example.aopoverview.controllers.MainController.getStudentDetail(..)) and args(studentId)")      //point-cut expression
+    public void logAfter(JoinPoint joinPoint, Integer studentId)
+    {
+        System.out.println("Aspect class: After MainController.getStudentDetail() : " + joinPoint.getSignature().getName());
     }
 
-    @After("execution(* com.example.aopoverview.controllers.MainController.testing(..))")     //point-cut expression
-    public void logAfter(JoinPoint joinPoint)
-    {
-        System.out.println("After MainController.testing() : " + joinPoint.getSignature().getName());
-    }
-
-    @Around("execution(* com.example.aopoverview.controllers.MainController.testing(..))")     //point-cut expression
-    public void logAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("Around MainController.testing() : " + joinPoint.getSignature().getName());
-        System.out.println("Write code for before advise");
+    @Around("execution(* com.example.aopoverview.controllers.MainController.getStudentDetail(..)) and args(studentId)")      //point-cut expression
+    public void logAround(ProceedingJoinPoint joinPoint, Integer studentId) throws Throwable {
+        System.out.println("Aspect class: Around MainController.getStudentDetail() : " + joinPoint.getSignature().getName());
+        System.out.println("Aspect class: Write code for before advise");
 
         joinPoint.proceed(); //continue to called method i.e. EmployeeManager.getEmployeeById()
 
-        System.out.println("Write code for after advise");
+        System.out.println("Aspect class: Write code for after advise");
     }
 
-    @AfterReturning("execution(* com.example.aopoverview.controllers.MainController.testing(..))")     //point-cut expression
-    public void logAfterReturning(JoinPoint joinPoint)
+    @AfterReturning("execution(* com.example.aopoverview.controllers.MainController.getStudentDetail(..)) and args(studentId)")      //point-cut expression
+    public void logAfterReturning(JoinPoint joinPoint, Integer studentId)
     {
-        System.out.println("AfterReturning MainController.testing() : " + joinPoint.getSignature().getName());
+        System.out.println("Aspect class: AfterReturning MainController.getStudentDetail() : " + joinPoint.getSignature().getName());
     }
 
-    @AfterThrowing("execution(* com.example.aopoverview.controllers.MainController.testing(..))")     //point-cut expression
-    public void logAfterThrowing(JoinPoint joinPoint)
+    @AfterThrowing(value = "execution(* com.example.aopoverview.controllers.MainController.getStudentError(..))", throwing = "ex")      //point-cut expression
+    public void logAfterThrowing(JoinPoint joinPoint, Exception ex)
     {
-        System.out.println("AfterThrowing MainController.testing() : " + joinPoint.getSignature().getName());
+            System.out.println("Aspect class: AfterThrowing MainController.getStudentError() : " + joinPoint.getSignature().getName());
+            System.out.println("Exception is:" + ex.getMessage());
     }
 }

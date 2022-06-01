@@ -5,8 +5,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class MainController {
 
-    public void testing() {
-        System.out.println("inside testing()");
+    public String getStudentDetail(Integer studentId) {
+        // do some processing
+        System.out.println("Actual class: returning student details");
+        return "studentDetail";
+    }
+
+    public void getStudentError() {
+        System.out.println("Actual class: Error returning student details");
+        Integer res = 50/0;
     }
 
 }
