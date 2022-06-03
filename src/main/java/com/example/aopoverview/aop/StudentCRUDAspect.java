@@ -25,7 +25,7 @@ public class StudentCRUDAspect {
         System.out.println("Aspect class: Around MainController.getStudentDetail() : " + joinPoint.getSignature().getName());
         System.out.println("Aspect class: Write code for before advise");
 
-        joinPoint.proceed(); //continue to called method i.e. EmployeeManager.getEmployeeById()
+        joinPoint.proceed(); //continue to call method (MainController.getStudentDetail)
 
         System.out.println("Aspect class: Write code for after advise");
     }
