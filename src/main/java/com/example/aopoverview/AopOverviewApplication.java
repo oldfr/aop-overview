@@ -16,6 +16,8 @@ public class AopOverviewApplication {
 		MainController controller = context.getBean(MainController.class);
 		try{
 		controller.getStudentDetail(20);
+		System.out.println("\n==========================================");
+		System.out.println("Calling method hat throws error");
 		controller.getStudentError();
 		}
 		catch (Exception e) {
