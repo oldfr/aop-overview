@@ -17,7 +17,7 @@ public class AopOverviewApplication {
 		try{
 		controller.getStudentDetail(20);
 		System.out.println("\n==========================================");
-		System.out.println("Calling method hat throws error");
+		System.out.println("Calling method that throws error");
 		controller.getStudentError();
 		}
 		catch (Exception e) {
