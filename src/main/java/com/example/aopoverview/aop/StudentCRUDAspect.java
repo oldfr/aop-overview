@@ -22,7 +22,6 @@ public class StudentCRUDAspect {
 
     @Around("execution(* com.example.aopoverview.controllers.MainController.getStudentDetail(..)) and args(studentId)")      //point-cut expression
     public void logAround(ProceedingJoinPoint joinPoint, Integer studentId) throws Throwable {
-//        System.out.println("Aspect class: Around MainController.getStudentDetail() : " + joinPoint.getSignature().getName());
         System.out.println("-Around advice: before");
 
         joinPoint.proceed(); //continue to call method (MainController.getStudentDetail)
